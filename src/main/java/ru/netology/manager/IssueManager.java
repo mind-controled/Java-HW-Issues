@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static ru.netology.domain.Status.CLOSED;
-
 public class IssueManager {
     private IssueRepository repository;
 
@@ -36,7 +34,7 @@ public class IssueManager {
     public List<Issue> findAllClosed() {
         List<Issue> temp = new ArrayList<>();
         for (Issue issue : repository.findAll()) {
-            if (issue.getStatus().equals(CLOSED)) {
+            if (issue.getStatus().equals(Status.CLOSED)) {
                 temp.add(issue);
 
             }

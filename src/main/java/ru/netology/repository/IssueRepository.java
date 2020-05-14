@@ -2,10 +2,11 @@ package ru.netology.repository;
 
 import ru.netology.domain.Issue;
 import ru.netology.domain.Status;
+import ru.netology.exception.NotFoundException;
 
 import java.util.ArrayList;
 
-import static ru.netology.domain.Status.CLOSED;
+
 
 public class IssueRepository {
     ArrayList<Issue> issues = new ArrayList<>();
@@ -24,7 +25,7 @@ public class IssueRepository {
                 return issue;
             }
         }
-        return null;
+        throw new NotFoundException(" Element with id: " + id + " not found");
     }
 
     public void openById(int id) {
@@ -38,7 +39,7 @@ public class IssueRepository {
     public void closeById(int id) {
         for (Issue issue : issues) {
             if (issue.getId() == id) {
-                issue.setStatus(CLOSED);
+                issue.setStatus(Status.CLOSED);
             }
         }
     }

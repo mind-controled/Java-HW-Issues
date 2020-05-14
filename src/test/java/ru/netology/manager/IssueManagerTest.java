@@ -2,7 +2,6 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.comparator.IssueComparator;
 import ru.netology.domain.Assignee;
 import ru.netology.domain.Issue;
 import ru.netology.domain.Label;
@@ -19,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class IssueManagerTest {
     private IssueRepository repository = new IssueRepository();
     private IssueManager issueManager = new IssueManager(repository);
-    private IssueComparator comparator = new IssueComparator();
 
     private Issue issue1 = new Issue(1, "name1", Status.OPEN, "author1", Label.BUG, Arrays.asList("project1", "project2"), "5.7 M2", new Assignee(4, "Name4", "Surname4"), "26.01.2020", 3, 4);
     private Issue issue2 = new Issue(2, "name2", Status.CLOSED, "author2", Label.FEATURE_REQUEST, Collections.singletonList("project3"), "5.7 Backlog", new Assignee(3, "Name3", "Surname3"), "14.02.2020", 11, 1);

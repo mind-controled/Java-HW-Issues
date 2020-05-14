@@ -6,6 +6,7 @@ import ru.netology.domain.Assignee;
 import ru.netology.domain.Issue;
 import ru.netology.domain.Label;
 import ru.netology.domain.Status;
+import ru.netology.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,11 @@ class IssueRepositoryTest {
     void shouldFindById() {
         Issue actual = issueRepository.findById(3);
         assertEquals(issue3, actual);
+    }
+
+    @Test
+    void shouldThrowException() {
+        assertThrows(NotFoundException.class, () -> issueRepository.findById(8));
     }
 
     @Test
