@@ -7,7 +7,6 @@ import ru.netology.exception.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class IssueRepository {
     private List<Issue> issues = new ArrayList<>();
 

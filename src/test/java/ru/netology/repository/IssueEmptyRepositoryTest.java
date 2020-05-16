@@ -17,5 +17,4 @@ class IssueEmptyRepositoryTest {
         List<Issue> expected = new ArrayList<>();
         Assertions.assertEquals(expected, actual);
     }
-
 }
