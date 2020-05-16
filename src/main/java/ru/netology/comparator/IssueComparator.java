@@ -2,18 +2,11 @@ package ru.netology.comparator;
 
 import ru.netology.domain.Issue;
 
-public class IssueComparator {
+import java.util.Comparator;
 
-    public IssueComparator() {
-    }
+public class IssueComparator implements Comparator<Issue> {
 
     public int compare(Issue o1, Issue o2) {
-        if (o1.getId() > o2.getId()) {
-            return -1;
-        }
-        if (o1.getId() < o2.getId()) {
-            return 1;
-        }
-        return 0;
+        return Integer.compare(o2.getId(), o1.getId());
     }
 }

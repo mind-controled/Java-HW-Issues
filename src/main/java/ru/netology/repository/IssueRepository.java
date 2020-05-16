@@ -5,17 +5,17 @@ import ru.netology.domain.Status;
 import ru.netology.exception.NotFoundException;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class IssueRepository {
-    ArrayList<Issue> issues = new ArrayList<>();
+    private List<Issue> issues = new ArrayList<>();
 
     public void save(Issue issue) {
         issues.add(issue);
     }
 
-    public ArrayList<Issue> findAll() {
+    public List<Issue> findAll() {
         return issues;
     }
 

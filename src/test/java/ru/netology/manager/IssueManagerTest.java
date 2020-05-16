@@ -9,10 +9,7 @@ import ru.netology.domain.Status;
 import ru.netology.repository.IssueRepository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,7 +22,7 @@ class IssueManagerTest {
     private Issue issue3 = new Issue(3, "name3", Status.OPEN, "author3", Label.QUESTION, Arrays.asList("project1", "project2"), null, new Assignee(2, "name2", "Surname2"), LocalDate.of(2019, 1, 16), 15, 0);
     private Issue issue4 = new Issue(4, "name4", Status.CLOSED, "author4", Label.BUG, Collections.emptyList(), null, null, LocalDate.of(2019, 4,9), 3, 2);
     private Issue issue5 = new Issue(5, "name5", Status.OPEN, "author5", Label.QUESTION, Collections.singletonList("project2"), "5.7 M2", null, LocalDate.of(2020, 5,6), 0, 0);
-    private Issue issue6 = new Issue(6, "name6", Status.CLOSED, "author6", Label.FEATURE_REQUEST, Collections.emptyList(), null, new Assignee(1, "Name1", "Surname1"), LocalDate.of(2020, 4, 11), 70, 7);
+    private Issue issue6 = new Issue(6, "name6", Status.CLOSED, "author2", Label.FEATURE_REQUEST, Collections.emptyList(), null, new Assignee(1, "Name1", "Surname1"), LocalDate.of(2020, 4, 11), 70, 7);
 
     @BeforeEach()
     void setUp() {
@@ -53,8 +50,8 @@ class IssueManagerTest {
 
     @Test
     void shouldFilterByAuthor() {
-        List<Issue> actual = issueManager.filterByAuthor(issue -> issue.getAuthor().equals("author2"));
-        List<Issue> expected = Arrays.asList(issue2);
+        List<Issue> actual = issueManager.filterByAuthor(issue -> issue.getAuthor().equals("author2"), comparator);
+        List<Issue> expected = Arrays.asList(issue2, issue6);
         assertEquals(expected, actual);
     }
 
@@ -67,14 +64,14 @@ class IssueManagerTest {
 
     @Test
     void shouldFilterByLabel() {
-        List<Issue> actual = issueManager.filterByLabel(issue -> issue.getLabel().equals(Label.QUESTION));
+        List<Issue> actual = issueManager.filterByLabel(issue -> issue.getLabels().equals(Label.QUESTION));
         List<Issue> expected = Arrays.asList(issue3, issue5);
         assertEquals(expected, actual);
     }
 
     @Test
     void shouldNotFilterByLabel() {
-        List<Issue> actual = issueManager.filterByLabel(issue -> issue.getLabel().equals(Label.DOC));
+        List<Issue> actual = issueManager.filterBy(issue -> issue.getLabels().equals(Label.DOC));
         List<Issue> expected = new ArrayList<>();
         assertEquals(expected, actual);
     }
@@ -82,7 +79,7 @@ class IssueManagerTest {
     @Test
     void shouldFilterByAssignee() {
         List<Issue> actual = issueManager.filterByAssignee(new Assignee(4, "Name4", "Surname4"));
-        List<Issue> expected = Arrays.asList(issue1);
+        List<Issue> expected = List(issue1);
         assertEquals(expected, actual);
     }
 

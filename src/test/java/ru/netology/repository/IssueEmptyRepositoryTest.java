@@ -15,7 +15,6 @@ class IssueEmptyRepositoryTest {
     void shouldFindAll() {
         ArrayList<Issue> actual = issueRepository.findAll();
         List<Issue> expected = new ArrayList<>();
-
         Assertions.assertEquals(expected, actual);
     }
 
